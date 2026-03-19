@@ -14,14 +14,152 @@
 SMS_STS st;   // левая
 SMS_STS st2;  // правая
 
+#define MAX_SPEED 2000
+#define SLOW_SPEED 300
+
 const uint8_t SERVO_ID = 1;
 
-// Вспомогательная функция
 void printReading(const char* prefix, const char* name, int val) {
   if (val < 0) Serial.printf("%s %s: ERR\n", prefix, name);
   else Serial.printf("%s %s: %d\n", prefix, name, val);
 }
+void move_func_fast() {
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(2000);
 
+  st.WritePosEx(1, 200, MAX_SPEED, 0);
+  delay(200);
+  st2.WritePosEx(1, 800, MAX_SPEED, 0);
+  delay(300);
+
+  st.WritePosEx(1, 400, MAX_SPEED, 0);
+  delay(200);
+  st2.WritePosEx(1, 500, MAX_SPEED, 0);
+  delay(100);
+
+  st.WritePosEx(1, 200, MAX_SPEED, 0);
+  delay(200);
+  st2.WritePosEx(1, 600, MAX_SPEED, 0);
+  delay(100);
+
+  st.WritePosEx(1, 400, MAX_SPEED, 0);
+  delay(200);
+  st2.WritePosEx(1, 900, MAX_SPEED, 0);
+  delay(100);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  delay(200);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(100);
+
+  st.WritePosEx(1, 100, MAX_SPEED, 0);
+  delay(100);
+  st2.WritePosEx(1, 900, MAX_SPEED, 0);
+  delay(100);
+
+  st.WritePosEx(1, 500, MAX_SPEED, 0);
+  st2.WritePosEx(1, 500, MAX_SPEED, 0);
+  delay(1500);
+
+  st.WritePosEx(1, 200, MAX_SPEED, 0);
+  st2.WritePosEx(1, 300, MAX_SPEED, 0);
+  delay(150);
+
+  st.WritePosEx(1, 500, MAX_SPEED, 0);
+  st2.WritePosEx(1, 500, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 200, MAX_SPEED, 0);
+  st2.WritePosEx(1, 300, MAX_SPEED, 0);
+  delay(1000);
+
+  st.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(100);
+  st2.WritePosEx(1, 0, MAX_SPEED, 0);
+
+  Serial.println("DONE");
+}
+
+void move_func_slow() {
+  st.WritePosEx(1, 0, SLOW_SPEED, 0);
+  st2.WritePosEx(1, 1024, SLOW_SPEED, 0);
+  delay(4500);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(1000);
+
+  st.WritePosEx(1, 500, MAX_SPEED, 0);
+  st2.WritePosEx(1, 500, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(1000);
+
+  st.WritePosEx(1, 500, MAX_SPEED, 0);
+  st2.WritePosEx(1, 500, MAX_SPEED, 0);
+  delay(1000);
+
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(700);
+
+  st.WritePosEx(1, 1024, SLOW_SPEED, 0);
+  st2.WritePosEx(1, 0, SLOW_SPEED, 0);
+}
+
+void move_func_up_down() {
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(1500);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+  delay(200);
+
+  st.WritePosEx(1, 300, MAX_SPEED, 0);
+  st2.WritePosEx(1, 700, MAX_SPEED, 0);
+  delay(500);
+
+  st.WritePosEx(1, 1024, MAX_SPEED, 0);
+  st2.WritePosEx(1, 0, MAX_SPEED, 0);
+}
+
+void move_func_up() {
+  st.WritePosEx(1, 0, MAX_SPEED, 0);
+  st2.WritePosEx(1, 1024, MAX_SPEED, 0);
+}
+
+void move_func_down() {
+  st.WritePosEx(1, 1024, MAX_SPEED, 0);
+  st2.WritePosEx(1, 0, MAX_SPEED, 0);
+}
 void setup() {
   delay(2000);
   Serial.begin(115200);
@@ -119,6 +257,27 @@ void loop() {
   st2.EnableTorque(SERVO_ID, 0);
 
   Serial.println("Torque DISABLED. Test cycle finished.");
+st.WritePosEx(1, 512, 1000, 0);
+st2.WritePosEx(2, 512, 1000, 0);
+delay(500);
 
+Serial.println("UP");
+move_func_up();
+delay(1000);
+Serial.println("1st animation");
+move_func_fast();
+delay(2000);
+
+Serial.println("2nd animation");
+move_func_slow();
+delay(2000);
+
+Serial.println("3rd animation");
+move_func_up_down();
+delay(2000);
+
+Serial.println("DOWN");
+move_func_down();
+delay(1000);
   while (true) delay(1000);
 }
